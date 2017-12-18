@@ -23,7 +23,6 @@
     "unfollow"
   ],
   "dependencies": {
-    "data.task": "^3.1.1",
     "now-env": "^3.0.1",
     "twit": "^2.2.9"
   },
@@ -43,7 +42,7 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "lint": "standard-markdown && standard",
+    "lint": "standard-markdown && npm run pretty",
     "precommit": "lint-staged",
     "pretest": "npm run lint",
     "pretty": "prettier-standard index.js --single-quote",
