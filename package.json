@@ -42,7 +42,7 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "lint": "standard-markdown && npm run pretty",
+    "lint": "standard-markdown && standard --fix",
     "precommit": "lint-staged",
     "pretest": "npm run lint",
     "pretty": "prettier-standard index.js --single-quote",
@@ -64,7 +64,7 @@
   "lint-staged": {
     "*.js": [
       "git add",
-      "prettier-standard"
+      "npm run lint"
     ]
   },
   "standard": {
