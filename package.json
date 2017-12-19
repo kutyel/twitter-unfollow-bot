@@ -23,6 +23,7 @@
     "unfollow"
   ],
   "dependencies": {
+    "forever": "^0.15.3",
     "now-env": "^3.0.1",
     "twit": "^2.2.9"
   },
@@ -46,6 +47,7 @@
     "precommit": "lint-staged",
     "pretest": "npm run lint",
     "pretty": "prettier-standard index.js --single-quote",
+    "start": "forever index.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
