@@ -16,13 +16,9 @@
   "bugs": {
     "url": "https://github.com/kutyel/twitter-unfollow-bot/issues"
   },
-  "keywords": [
-    "bot",
-    "twitter",
-    "twitter-bot",
-    "unfollow"
-  ],
+  "keywords": ["bot", "twitter", "twitter-bot", "unfollow"],
   "dependencies": {
+    "data.maybe": "^1.2.2",
     "data.task": "^3.1.1",
     "now-env": "^3.0.1",
     "twit": "^2.2.9"
@@ -43,7 +39,7 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "lint": "standard-markdown && standard",
+    "lint": "standard-markdown && standard --fix",
     "precommit": "lint-staged",
     "pretest": "npm run lint",
     "pretty": "prettier-standard index.js --single-quote",
@@ -63,14 +59,9 @@
     "testEnvironment": "node"
   },
   "lint-staged": {
-    "*.js": [
-      "git add",
-      "prettier-standard"
-    ]
+    "*.js": ["git add", "npm run lint"]
   },
   "standard": {
-    "env": [
-      "jest"
-    ]
+    "env": ["jest"]
   }
 }

@@ -21,7 +21,7 @@ package-lock.json
 .idea
 *sublime*
 nbproject
-now.json
+now-secrets.json
 
 ############################
 # Tests
