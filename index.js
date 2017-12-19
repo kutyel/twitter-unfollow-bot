@@ -17,27 +17,30 @@ const get = (url, opts = { count: 200 }) =>
   new Task((rej, res) =>
     bot.get(url, opts, (err, data, response) => (err ? rej(err) : res(data)))
   )
-// const post = text =>
-//   new Task((rej, res) =>
-//     bot.post(
-//       'direct_messages/new',
-//       {
-//         screen_name: 'flaviocorpa',
-//         text
-//       },
-//       (err, data, response) => (err ? rej(err) : res(data))
-//     )
-//   )
-// const sleep = ms => new Task((rej, res) => setTimeout(res, ms))
+/*
+  const post = text =>
+  new Task((rej, res) =>
+    bot.post(
+      'direct_messages/new',
+      {
+        screen_name: 'flaviocorpa',
+        text
+      },
+      (err, data, response) => (err ? rej(err) : res(data))
+    )
+  )
+const sleep = ms => new Task((rej, res) => setTimeout(res, ms))
+*/
 const diff = xs => xy => xs.filter(x => !xy.includes(x))
 // #endregion
 
+// TODO: this should be recursive (using a `cursor` to get all the followers)
 const getFollowers = get('followers/list').map(data =>
   data.users.map(user => user.screen_name)
 )
 
 Maybe.of(diff)
   .ap(getFollowers)
-  // .ap(sleep(15 * 60 * 1000))
+  // .ap(sleep(15 * 60 * 1000)) // TODO: how to delay both Tasks?
   .ap(getFollowers)
-  .fork(console.error, console.log)
+  .fork(console.error, console.log) // TODO: apply the `post` method to the list of unfollows
