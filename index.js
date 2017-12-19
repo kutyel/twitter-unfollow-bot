@@ -12,7 +12,7 @@ const bot = new Twit({
 
 const sleep = ms => new Promise((resolve, reject) => setTimeout(resolve, ms))
 
-const diff = (old, news) => news.filter(n => !old.includes(n))
+const diff = (xs, xy) => xs.filter(x => !xy.includes(x))
 
 const getUsers = async (all = [], cursor = -1) => {
   try {
@@ -30,12 +30,15 @@ const getUsers = async (all = [], cursor = -1) => {
 
 const main = async () => {
   const oldFollowers = await getUsers()
-  console.log('oldFollowers', oldFollowers)
   await sleep(15 * 60 * 1000)
   const currentFollowers = await getUsers()
-  console.log('currentFollowers', currentFollowers)
   const unfollows = diff(oldFollowers, currentFollowers)
-  unfollows.forEach(user => console.log(`User @${user} stopped following you!`))
+  unfollows.forEach(user =>
+    bot.post('direct_messages/new', {
+      screen_name: 'flaviocorpa',
+      text: `User @${user} stopped following you!`
+    })
+  )
 }
 
-main()
+setInterval(() => main(), 15 * 60 * 1000)
