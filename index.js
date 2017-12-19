@@ -41,4 +41,4 @@ const main = async () => {
   )
 }
 
-setInterval(() => main(), 15 * 60 * 1000)
+module.exports = () => setInterval(() => main(), 15 * 60 * 1000)
