@@ -12,7 +12,6 @@ const bot = new Twit({
 })
 
 const diff = xs => xy => xs.filter(x => !xy.includes(x))
-
 const sleep = ms => new Task((rej, res) => setTimeout(res, ms))
 
 const get = (url, opts = { count: 200 }) =>
@@ -36,8 +35,10 @@ const getFollowers = (all = [], cursor = 0) =>
         : getFollowers(all.concat(users), nextCursor)
   )
 
-module.exports = () =>
+const main = () =>
   Task.of(diff)
     .ap(getFollowers())
     .ap(sleep(15 * 60 * 1000).chain(getFollowers))
     .fork(console.error, notify)
+
+module.exports = () => setInterval(main, 15 * 60 * 1000)
