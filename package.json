@@ -34,6 +34,7 @@
     "husky": "latest",
     "jest": "latest",
     "lint-staged": "latest",
+    "merge": ">=1.2.1"
     "prettier-standard": "latest",
     "standard": "latest",
     "standard-markdown": "latest"
